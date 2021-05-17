@@ -9,11 +9,12 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.adam.stan.model.Question;
+import com.adam.stan.util.JsonHelper;
 
-public class QuestionControllerTests extends ControllerTests {
+class QuestionControllerTests extends ControllerTests {
 
     @Test
-    public void getAllQuestions() throws Exception {
+    void getAllQuestions() throws Exception {
         String uri = "/all/questions";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
@@ -21,12 +22,12 @@ public class QuestionControllerTests extends ControllerTests {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
-        Question[] questions = super.mapFromJson(content, Question[].class);
+        Question[] questions = JsonHelper.mapFromJson(content, Question[].class);
         assertTrue(questions.length > 0);
     }
 
     @Test
-    public void getNQuestions() throws Exception {
+    void getNQuestions() throws Exception {
         int amount = 20;
         String uri = "/questions/" + amount;
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
@@ -35,12 +36,12 @@ public class QuestionControllerTests extends ControllerTests {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
-        Question[] questions = super.mapFromJson(content, Question[].class);
+        Question[] questions = JsonHelper.mapFromJson(content, Question[].class);
         assertEquals(amount, questions.length);
     }
 
     @Test
-    public void getAllCategories() throws Exception {
+    void get2CategoriesQuestions() throws Exception {
         int amount = 10;
         String categories = "Starozytnosc,Sredniowiecze";
         String uri = "/questions/" + amount + "/" + categories;
@@ -50,7 +51,7 @@ public class QuestionControllerTests extends ControllerTests {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
-        Question[] questions = super.mapFromJson(content, Question[].class);
+        Question[] questions = JsonHelper.mapFromJson(content, Question[].class);
         assertEquals(amount, questions.length);
     }
 }
