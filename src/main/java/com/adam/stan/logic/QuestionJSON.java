@@ -9,15 +9,15 @@ import com.adam.stan.model.Question;
 public class QuestionJSON {
     private String content;
     private String correctAnswer;
-    private List<String> allAnswers = new ArrayList<>();
+    private List<String> otherAnswers = new ArrayList<>();
 
     public QuestionJSON(Question question) {
         content = question.getContent();
         correctAnswer = question.getCorrectAnswer().getText();
     }
 
-    public void addToAllAnswers(Answer ans) {
-        allAnswers.add(ans.getText());
+    public void addToOtherAnswers(Answer ans) {
+        otherAnswers.add(ans.getText());
     }
 
     @Override
@@ -33,8 +33,8 @@ public class QuestionJSON {
         return correctAnswer;
     }
 
-    public List<String> getAllAnswers() {
-        return allAnswers;
+    public List<String> getOtherAnswers() {
+        return otherAnswers;
     }
 
 }

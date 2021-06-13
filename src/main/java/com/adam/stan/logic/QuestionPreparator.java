@@ -1,9 +1,8 @@
 package com.adam.stan.logic;
 
-import java.util.List;
+import com.adam.stan.model.Question;
+import com.adam.stan.util.exceptions.NotEnoughItemsOnListException;
 
 public interface QuestionPreparator {
-    void setNumberOfQuestions(int amount);
-
-    List<QuestionJSON> getProperQuestions();
+    QuestionJSON createQuestion(Question question, int amountOfChoices) throws NotEnoughItemsOnListException;
 }
