@@ -13,11 +13,11 @@ public class QuestionJSON {
 
     public QuestionJSON(Question question) {
         content = question.getContent();
-        correctAnswer = question.getCorrectAnswer().getText();
+        correctAnswer = question.getCorrectAnswer().getAnswer();
     }
 
     public void addToOtherAnswers(Answer ans) {
-        otherAnswers.add(ans.getText());
+        otherAnswers.add(ans.getAnswer());
     }
 
     @Override

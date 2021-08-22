@@ -6,21 +6,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "answers")
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID;
-    private String text;
-    @OneToOne(mappedBy = "correctAnswer")
-    @JsonIgnore
-    private Question question;
+    private long id;
+    private String answer;
     @ManyToOne
     @JoinColumn(name = "type_id", nullable = false)
     private AnswerType type;
@@ -31,40 +25,31 @@ public class Answer {
     public Answer() {
     }
 
-    public Answer(String text, Question question, Category cat, AnswerType type) {
-        this.text = text;
-        this.question = question;
+    public Answer(String text, Category cat, AnswerType type) {
+        this.answer = text;
         this.type = type;
         this.category = cat;
     }
 
     @Override
     public String toString() {
-        return "Answer [ID=" + ID + ", text=" + text + ", type=" + type + "]";
+        return "Answer [id=" + id + ", text=" + answer + ", type=" + type + "]";
     }
 
-    public Integer getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(Integer iD) {
-        ID = iD;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getAnswer() {
+        return answer;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
+    public void setAnswer(String text) {
+        this.answer = text;
     }
 
     public AnswerType getType() {

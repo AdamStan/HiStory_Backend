@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,28 +16,24 @@ import javax.persistence.Table;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID;
-    @Column(name = "content", nullable = false)
+    private long id;
+    @Column(name = "text", nullable = false)
     private String content;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "correct_answer_id")
     private Answer correctAnswer;
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
 
     public Question() {
     }
 
-    public Question(String content, Answer correctAnswer, Category category) {
+    public Question(String content, Answer correctAnswer) {
         this.content = content;
         this.correctAnswer = correctAnswer;
-        this.category = category;
     }
 
     @Override
     public String toString() {
-        return "Question-" + ID.toString() + ": " + content;
+        return "Question-" + id + ": " + content;
     }
 
     public String getContent() {
@@ -57,12 +52,12 @@ public class Question {
         this.correctAnswer = correctAnswer;
     }
 
-    public Category getCategory() {
-        return category;
+    public long getId() {
+        return id;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setId(long id) {
+        this.id = id;
     }
 
 }

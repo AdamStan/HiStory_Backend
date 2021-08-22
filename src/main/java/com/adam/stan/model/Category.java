@@ -2,6 +2,7 @@ package com.adam.stan.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,11 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID;
+    private long id;
+    @Column(name = "category")
     private String name;
-    @OneToMany(mappedBy = "category")
-    @JsonIgnore
-    private Set<Question> questions;
     @OneToMany(mappedBy = "category")
     @JsonIgnore
     private Set<Answer> answers;
@@ -34,15 +33,15 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category [ID=" + ID + ", name=" + name + "]";
+        return "Category [ID=" + id + ", name=" + name + "]";
     }
 
-    public Integer getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(Integer iD) {
-        ID = iD;
+    public void setId(long iD) {
+        id = iD;
     }
 
     public String getName() {
@@ -51,14 +50,6 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(Set<Question> questions) {
-        this.questions = questions;
     }
 
 }

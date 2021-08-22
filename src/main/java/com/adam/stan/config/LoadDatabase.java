@@ -19,8 +19,8 @@ import com.adam.stan.repositories.QuestionRepository;
 public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
-    @Bean
-    @Autowired
+//    @Bean
+//    @Autowired
     public CommandLineRunner initDatabase(CategoryRepository repoCategory, QuestionRepository repoQuestion,
             AnswerTypeRepository repoAnswerType) {
         return args -> {
@@ -30,8 +30,8 @@ public class LoadDatabase {
             AnswerType type1 = new AnswerType("year");
             log.info("Preloading {}", repoAnswerType.save(type1));
 
-            Question q1 = new Question("Kiedy byl \"Cud nad Wisla\"?", null, category);
-            Answer a1 = new Answer("1920", q1, category, type1);
+            Question q1 = new Question("Kiedy byl \"Cud nad Wisla\"?", null);
+            Answer a1 = new Answer("1920", category, type1);
             q1.setCorrectAnswer(a1);
             log.info("Creating {}", repoQuestion.save(q1));
         };
