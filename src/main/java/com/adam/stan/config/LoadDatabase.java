@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import com.adam.stan.model.Answer;
 import com.adam.stan.model.AnswerType;
@@ -19,8 +20,9 @@ import com.adam.stan.repositories.QuestionRepository;
 public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
-//    @Bean
-//    @Autowired
+    @Bean
+    @Profile("test")
+    @Autowired
     public CommandLineRunner initDatabase(CategoryRepository repoCategory, QuestionRepository repoQuestion,
             AnswerTypeRepository repoAnswerType) {
         return args -> {

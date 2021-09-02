@@ -19,14 +19,19 @@ public class QuestionPreparatorImpl implements QuestionPreparator {
     private AnswerRepository repo;
 
     @Override
-    public QuestionJSON createQuestion(Question question, int amountOfChoices) throws NotEnoughItemsOnListException {
+    public QuestionJSON createQuestion(Question question, int amountOfChoices) throws Exception {
         QuestionJSON jsonObject = new QuestionJSON(question);
         AnswerType type = question.getCorrectAnswer().getType();
         List<Answer> answers = repo.findByType(type);
 
         RandomItemsFromList<Answer> itemsGenerator = new RandomItemsFromList<>(amountOfChoices, answers);
-        List<Answer> chosenAnswers = itemsGenerator.getRandomItems();
-        chosenAnswers.forEach(answer -> jsonObject.addToOtherAnswers(answer));
+        try {
+            List<Answer> chosenAnswers = itemsGenerator.getRandomItems();
+            chosenAnswers.forEach(answer -> jsonObject.addToOtherAnswers(answer));
+        } catch (NotEnoughItemsOnListException e) {
+            String message = String.format("There is not enough answers from category: %s", type.getName());
+            throw new Exception(message, e);
+        }
 
         return jsonObject;
     }

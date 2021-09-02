@@ -28,7 +28,7 @@ class QuestionControllerTests extends ControllerTests {
 
     @Test
     void getNQuestions() throws Exception {
-        int amount = 20;
+        int amount = 10;
         String uri = "/questions/" + amount;
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
