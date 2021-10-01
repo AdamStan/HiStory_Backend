@@ -18,17 +18,20 @@ class QuestionControllerMockedTests {
 
     @Test
     void questionControllerShouldReturn() throws Exception {
-        mocked.perform(get("/all/questions")).andDo(print()).andExpect(status().isOk());
+        mocked.perform(get("/v1/all/questions")).andDo(print())
+           .andExpect(status().isOk());
     }
 
     @Test
     void questionControllerShouldReturn2() throws Exception {
-        mocked.perform(get("/questions/10")).andDo(print()).andExpect(status().isOk());
+        mocked.perform(get("/v1/questions/10")).andDo(print())
+              .andExpect(status().isOk());
     }
 
     @Test
     void questionControllerShouldReturn3() throws Exception {
-        mocked.perform(get("/questions/10/Starozytnosc,Sredniowiecze")).andDo(print()).andExpect(status().isOk());
+        mocked.perform(get("/v1/questions/20/cat2")).andDo(print())
+              .andExpect(status().isOk());
     }
 
 }
