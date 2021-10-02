@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.adam.stan.controllers.CategoryController;
 import com.adam.stan.controllers.QuestionController;
 import com.adam.stan.repositories.AnswerTypeRepository;
 import com.adam.stan.repositories.CategoryRepository;

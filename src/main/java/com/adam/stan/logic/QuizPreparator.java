@@ -2,8 +2,9 @@ package com.adam.stan.logic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import com.adam.stan.util.exceptions.NotEnoughItemsOnListException;
 
 @Component
 public class QuizPreparator {
-    private static final Logger log = Logger.getLogger(QuizPreparator.class);
+    private static final Logger log = Logger.getLogger(QuizPreparator.class.getName());
     private QuestionPreparator preparator;
 
     @Autowired
@@ -31,7 +32,7 @@ public class QuizPreparator {
         } catch (NotEnoughItemsOnListException e) {
             String message = String.format("Not enough elements on list, elements: %d, values: %d", e.getItemsOnList(),
                     e.getHowManyItemsToChoose());
-            log.error(message, e);
+            log.log(Level.FINEST, message, e);
             throw new RuntimeException(message);
         }
         return jsonToSend;

@@ -12,16 +12,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
-@Table(name = "categories")
 public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "category")
     private String name;
-    @OneToMany(mappedBy = "category")
-    @JsonIgnore
     private Set<Answer> answers;
 
     public Category() {
