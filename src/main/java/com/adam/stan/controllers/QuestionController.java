@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adam.stan.logic.QuestionJSON;
-import com.adam.stan.logic.QuizPreparator;
+import com.adam.stan.logic.QuizPreparation;
 import com.adam.stan.model.Question;
 
 @RestController
@@ -27,7 +27,7 @@ public class QuestionController {
     private QuestionClient client;
 
     @Autowired
-    private QuizPreparator quizPreparator;
+    private QuizPreparation preparation;
 
     @GetMapping("/all/questions")
     List<Question> getAllQuestions() {
@@ -47,7 +47,7 @@ public class QuestionController {
         log.info("Parameter 'amount': " + amount);
         List<Question> questions = client.getQuestions();
 
-        return quizPreparator.getQuiz(questions, amount, amountOfChoices);
+        return preparation.getQuiz(questions, amount, amountOfChoices);
     }
 
     /**
@@ -61,7 +61,7 @@ public class QuestionController {
     List<QuestionJSON> getQuestionsFromSpecifiedCategories(@PathVariable Long amount, @PathVariable String[] categories) {
         log.info("Parameter 'amount': " + amount);
         log.info("Parameter 'categories': " + Arrays.toString(categories));
-        return quizPreparator.getQuiz(client.getQuestionsByCategories(categories), amount.intValue(), amountOfChoices);
+        return preparation.getQuiz(client.getQuestionsByCategories(categories), amount.intValue(), amountOfChoices);
     }
 
 }

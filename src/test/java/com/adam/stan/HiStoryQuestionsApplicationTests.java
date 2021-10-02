@@ -2,14 +2,15 @@ package com.adam.stan;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.adam.stan.clients.AnswerClient;
+import com.adam.stan.clients.QuestionClient;
+import com.adam.stan.logic.QuestionPreparation;
+import com.adam.stan.logic.QuizPreparation;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.adam.stan.controllers.QuestionController;
-import com.adam.stan.repositories.AnswerTypeRepository;
-import com.adam.stan.repositories.CategoryRepository;
-import com.adam.stan.repositories.QuestionRepository;
 
 @SpringBootTest
 class HiStoryQuestionsApplicationTests {
@@ -17,24 +18,25 @@ class HiStoryQuestionsApplicationTests {
     private QuestionController questionController;
 
     @Autowired
-    private CategoryController categoryController;
+    private QuestionClient questionClient;
 
     @Autowired
-    private QuestionRepository questionRepository;
+    private AnswerClient answerClient;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private QuestionPreparation questionPreparation;
 
     @Autowired
-    private AnswerTypeRepository answerTypeRepository;
+    private QuizPreparation quizPreparation;
 
     @Test
     void contextLoads() {
         assertThat(questionController).isNotNull();
-        assertThat(categoryController).isNotNull();
-        assertThat(questionRepository).isNotNull();
-        assertThat(categoryRepository).isNotNull();
-        assertThat(answerTypeRepository).isNotNull();
+        assertThat(questionClient).isNotNull();
+        assertThat(questionClient.getApiHost()).isNotNull();
+        assertThat(answerClient).isNotNull();
+        assertThat(questionPreparation).isNotNull();
+        assertThat(quizPreparation).isNotNull();
     }
 
 }

@@ -13,13 +13,13 @@ import com.adam.stan.util.RandomItemsFromList;
 import com.adam.stan.util.exceptions.NotEnoughItemsOnListException;
 
 @Component
-public class QuizPreparator {
-    private static final Logger log = Logger.getLogger(QuizPreparator.class.getName());
-    private QuestionPreparator preparator;
+public class QuizPreparationImpl implements QuizPreparation{
+    private static final Logger log = Logger.getLogger(QuizPreparationImpl.class.getName());
+    private QuestionPreparation questionPreparation;
 
     @Autowired
-    public void setPreparator(QuestionPreparator questionPreparator) {
-        this.preparator = questionPreparator;
+    public void setPreparation(QuestionPreparation questionPreparation) {
+        this.questionPreparation = this.questionPreparation;
     }
 
     public List<QuestionJSON> getQuiz(List<Question> allQuestions, int amountOfQuestions, int answersToChoice) {
@@ -27,7 +27,7 @@ public class QuizPreparator {
         RandomItemsFromList<Question> itemsGenerator = new RandomItemsFromList<>(amountOfQuestions, allQuestions);
         try {
             for (Question question : itemsGenerator.getRandomItems()) {
-                jsonToSend.add(preparator.createQuestion(question, answersToChoice));
+                jsonToSend.add(questionPreparation.createQuestion(question, answersToChoice));
             }
         } catch (NotEnoughItemsOnListException e) {
             String message = String.format("Not enough elements on list, elements: %d, values: %d", e.getItemsOnList(),

@@ -13,7 +13,7 @@ import com.adam.stan.util.RandomItemsFromList;
 import com.adam.stan.util.exceptions.NotEnoughItemsOnListException;
 
 @Service
-public class QuestionPreparatorImpl implements QuestionPreparator {
+public class QuestionPreparationImpl implements QuestionPreparation {
 
     @Autowired
     private AnswerClient client;
