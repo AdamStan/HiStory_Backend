@@ -2,36 +2,36 @@ package com.adam.stan.model;
 
 public class Question {
     private long id;
-    private String content;
-    private Answer correctAnswer;
+    private String text;
+    private Answer correct_answer;
 
     public Question() {
     }
 
     public Question(String content, Answer correctAnswer) {
-        this.content = content;
-        this.correctAnswer = correctAnswer;
+        this.text = content;
+        this.correct_answer = correctAnswer;
     }
 
     @Override
     public String toString() {
-        return "Question-" + id + ": " + content;
+        return "Question-" + id + ": " + text;
     }
 
-    public String getContent() {
-        return content;
+    public String getText() {
+        return text;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public Answer getCorrectAnswer() {
-        return correctAnswer;
+    public Answer getCorrect_answer() {
+        return correct_answer;
     }
 
-    public void setCorrectAnswer(Answer correctAnswer) {
-        this.correctAnswer = correctAnswer;
+    public void setCorrect_answer(Answer correct_answer) {
+        this.correct_answer = correct_answer;
     }
 
     public long getId() {

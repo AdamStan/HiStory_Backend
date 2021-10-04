@@ -21,7 +21,7 @@ public class QuestionPreparationImpl implements QuestionPreparation {
     @Override
     public QuestionJSON createQuestion(Question question, int amountOfChoices) throws NotEnoughItemsOnListException {
         QuestionJSON jsonObject = new QuestionJSON(question);
-        AnswerType type = question.getCorrectAnswer().getType();
+        AnswerType type = question.getCorrect_answer().getType();
         // TODO: and category!
         List<Answer> answers = client.getAnswersByType(type.getName());
 
