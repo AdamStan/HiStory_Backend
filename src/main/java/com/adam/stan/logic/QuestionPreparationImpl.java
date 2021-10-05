@@ -14,9 +14,12 @@ import com.adam.stan.util.exceptions.NotEnoughItemsOnListException;
 
 @Service
 public class QuestionPreparationImpl implements QuestionPreparation {
+    private AnswerClient client;
 
     @Autowired
-    private AnswerClient client;
+    public void setClient(AnswerClient client) {
+        this.client = client;
+    }
 
     @Override
     public QuestionJSON createQuestion(Question question, int amountOfChoices) throws NotEnoughItemsOnListException {
