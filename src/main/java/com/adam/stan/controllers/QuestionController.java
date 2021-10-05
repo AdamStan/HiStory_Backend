@@ -21,7 +21,7 @@ import com.adam.stan.model.Question;
 public class QuestionController {
     private static final Logger log = LoggerFactory.getLogger(QuestionController.class);
 
-    private int amountOfChoices = 4;
+    private final int amountOfChoices = 4;
 
     @Autowired
     private QuestionClient client;

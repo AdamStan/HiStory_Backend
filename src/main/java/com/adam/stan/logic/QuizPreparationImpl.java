@@ -19,7 +19,7 @@ public class QuizPreparationImpl implements QuizPreparation{
 
     @Autowired
     public void setPreparation(QuestionPreparation questionPreparation) {
-        this.questionPreparation = this.questionPreparation;
+        this.questionPreparation = questionPreparation;
     }
 
     public List<QuestionJSON> getQuiz(List<Question> allQuestions, int amountOfQuestions, int answersToChoice) {
@@ -30,7 +30,7 @@ public class QuizPreparationImpl implements QuizPreparation{
                 jsonToSend.add(questionPreparation.createQuestion(question, answersToChoice));
             }
         } catch (NotEnoughItemsOnListException e) {
-            String message = String.format("Not enough elements on list, elements: %d, values: %d", e.getItemsOnList(),
+            String message = String.format("Not enough elements on list! There is %d elements, but should be %d or more!", e.getItemsOnList(),
                     e.getHowManyItemsToChoose());
             log.log(Level.FINEST, message, e);
             throw new RuntimeException(message);
