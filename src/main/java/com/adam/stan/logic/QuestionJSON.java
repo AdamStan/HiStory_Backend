@@ -12,8 +12,8 @@ public class QuestionJSON {
     private List<String> otherAnswers = new ArrayList<>();
 
     public QuestionJSON(Question question) {
-        content = question.getContent();
-        correctAnswer = question.getCorrectAnswer().getAnswer();
+        content = question.getText();
+        correctAnswer = question.getCorrect_answer().getAnswer();
     }
 
     public void addToOtherAnswers(Answer ans) {
