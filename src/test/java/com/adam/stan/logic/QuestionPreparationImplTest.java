@@ -23,8 +23,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class QuestionPreparationImplTest {
-    private final static List<Answer> optionsWithoutAnswer = new ArrayList<>();
-    private final static List<Answer> optionsWithAnswer = new ArrayList<>();
+    private final static List<Answer> OPTIONS_WITHOUT_CORRECT_ANSWER = new ArrayList<>();
+    private final static List<Answer> OPTIONS_WITH_CORRECT_ANSWER = new ArrayList<>();
     private static Question question;
 
     QuestionPreparationImpl preparation = new QuestionPreparationImpl();
@@ -41,13 +41,13 @@ public class QuestionPreparationImplTest {
         question.setText("Text???");
         question.setCorrect_answer(correctAnswer);
 
-        optionsWithAnswer.addAll(Arrays.asList(
+        OPTIONS_WITH_CORRECT_ANSWER.addAll(Arrays.asList(
                 correctAnswer,
                 new Answer("ans1"),
                 new Answer("ans2"),
                 new Answer("ans3")
         ));
-        optionsWithoutAnswer.addAll(Arrays.asList(
+        OPTIONS_WITHOUT_CORRECT_ANSWER.addAll(Arrays.asList(
                 new Answer("ans1"),
                 new Answer("ans2"),
                 new Answer("ans4"),
@@ -71,7 +71,7 @@ public class QuestionPreparationImplTest {
 
     @Test
     void createQuestion_notEnoughAnswers() {
-        when(client.getAnswersByTypeAndCategory(any(), any())).thenReturn(optionsWithAnswer);
+        when(client.getAnswersByTypeAndCategory(any(), any())).thenReturn(OPTIONS_WITH_CORRECT_ANSWER);
         assertThrows(NotEnoughItemsOnListException.class, () -> {
             preparation.createQuestion(question, 5);
         });
@@ -79,8 +79,8 @@ public class QuestionPreparationImplTest {
 
     public static List<List<Answer>> answerProviders() {
         return List.of(
-                optionsWithAnswer,
-                optionsWithoutAnswer
+                OPTIONS_WITH_CORRECT_ANSWER,
+                OPTIONS_WITHOUT_CORRECT_ANSWER
         );
     }
 }
