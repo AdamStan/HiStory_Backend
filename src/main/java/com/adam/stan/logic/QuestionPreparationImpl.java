@@ -1,8 +1,10 @@
 package com.adam.stan.logic;
 
 import java.util.List;
+import java.util.Random;
 
 import com.adam.stan.clients.AnswerClient;
+import com.adam.stan.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,14 +27,22 @@ public class QuestionPreparationImpl implements QuestionPreparation {
     public QuestionJSON createQuestion(Question question, int amountOfChoices) throws NotEnoughItemsOnListException {
         QuestionJSON jsonObject = new QuestionJSON(question);
         AnswerType type = question.getCorrect_answer().getType();
-        // TODO: and category!
-        List<Answer> answers = client.getAnswersByType(type.getName());
+        Category cat = question.getCorrect_answer().getCategory();
+        List<Answer> answers = client.getAnswersByTypeAndCategory(type.getName(), cat.getName());
 
         RandomItemsFromList<Answer> itemsGenerator = new RandomItemsFromList<>(amountOfChoices, answers);
         List<Answer> chosenAnswers = itemsGenerator.getRandomItems();
-        chosenAnswers.forEach(answer -> jsonObject.addToOtherAnswers(answer));
+        if (checkIfNotContainsCorrectAnswer(chosenAnswers, question.getCorrect_answer())) {
+            chosenAnswers.remove(new Random().nextInt(chosenAnswers.size()));
+            chosenAnswers.add(question.getCorrect_answer());
+        }
+        chosenAnswers.forEach(jsonObject::addToOtherAnswers);
 
         return jsonObject;
+    }
+
+    private boolean checkIfNotContainsCorrectAnswer(List<Answer> chosenAnswers, Answer correct_answer) {
+        return chosenAnswers.stream().noneMatch(ans -> ans.getAnswer().equals(correct_answer.getAnswer()));
     }
 
 }
