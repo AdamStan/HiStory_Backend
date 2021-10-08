@@ -9,6 +9,10 @@ public class Answer {
     public Answer() {
     }
 
+    public Answer(String text) {
+        this.answer = text;
+    }
+
     public Answer(String text, Category cat, AnswerType type) {
         this.answer = text;
         this.type = type;
