@@ -1,0 +1,7 @@
+services:
+  web:
+    container_name: quiz-server
+    build: .
+    image: quiz-server:latest
+    ports:
+      - "9000:8080"
