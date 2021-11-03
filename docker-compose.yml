@@ -5,3 +5,8 @@ services:
     image: quiz-server:latest
     ports:
       - "9000:8080"
+    networks:
+      - history_backend_py_back_net
+networks:
+  history_backend_py_back_net:
+    external: true
