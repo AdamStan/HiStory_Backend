@@ -8,14 +8,14 @@ import com.adam.stan.util.RandomItemsFromList;
  * @author adam
  *
  */
-public class NotEnoughItemsOnListException extends Exception {
+public class NotEnoughItemsOnListException extends RuntimeException {
     private static final long serialVersionUID = 7483649114262446680L;
 
-    private int itemsOnList;
-    private int howManyItemsToChoose;
+    private final int itemsOnList;
+    private final int howManyItemsToChoose;
 
     public NotEnoughItemsOnListException(String message, int itemsOnList, int howManyItemsToChoose) {
-        super(message);
+        super(message + String.format(" There is %d elements, but we need %d elements", itemsOnList, howManyItemsToChoose));
         this.itemsOnList = itemsOnList;
         this.howManyItemsToChoose = howManyItemsToChoose;
     }

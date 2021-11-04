@@ -50,6 +50,7 @@ class QuestionControllerMockedTests {
         when(questionClient.getQuestions()).thenReturn(database.getQuestions());
         when(questionClient.getQuestionsByCategories(any())).thenReturn(database.getQuestions());
         when(answerClient.getAnswersByType(any())).thenReturn(database.getAnswers());
+        when(answerClient.getAnswersByTypeAndCategory(any(), any())).thenReturn(database.getAnswers());
     }
 
     @Test

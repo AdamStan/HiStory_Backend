@@ -1,7 +1,7 @@
 package com.adam.stan.logic;
 
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.adam.stan.clients.AnswerClient;
 import com.adam.stan.model.Category;
@@ -12,7 +12,6 @@ import com.adam.stan.model.Answer;
 import com.adam.stan.model.AnswerType;
 import com.adam.stan.model.Question;
 import com.adam.stan.util.RandomItemsFromList;
-import com.adam.stan.util.exceptions.NotEnoughItemsOnListException;
 
 @Service
 public class QuestionPreparationImpl implements QuestionPreparation {
@@ -24,7 +23,7 @@ public class QuestionPreparationImpl implements QuestionPreparation {
     }
 
     @Override
-    public QuestionJSON createQuestion(Question question, int amountOfChoices) throws NotEnoughItemsOnListException {
+    public QuestionJSON createQuestion(Question question, int amountOfChoices) {
         QuestionJSON jsonObject = new QuestionJSON(question);
         AnswerType type = question.getCorrect_answer().getType();
         Category cat = question.getCorrect_answer().getCategory();
@@ -33,7 +32,7 @@ public class QuestionPreparationImpl implements QuestionPreparation {
         RandomItemsFromList<Answer> itemsGenerator = new RandomItemsFromList<>(amountOfChoices, answers);
         List<Answer> chosenAnswers = itemsGenerator.getRandomItems();
         if (checkIfNotContainsCorrectAnswer(chosenAnswers, question.getCorrect_answer())) {
-            chosenAnswers.remove(new Random().nextInt(chosenAnswers.size()));
+            chosenAnswers.remove(ThreadLocalRandom.current().nextInt(chosenAnswers.size()));
             chosenAnswers.add(question.getCorrect_answer());
         }
         chosenAnswers.forEach(jsonObject::addToOtherAnswers);

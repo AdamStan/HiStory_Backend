@@ -7,17 +7,17 @@ import java.util.Random;
 import com.adam.stan.util.exceptions.NotEnoughItemsOnListException;
 
 public class RandomItemsFromList<E> {
-    private int numberOfItems;
-    private List<E> elements;
+    private final int numberOfItems;
+    private final List<E> elements;
 
     public RandomItemsFromList(int numberOfElements, List<E> objects) {
         numberOfItems = numberOfElements;
         elements = objects;
     }
 
-    public List<E> getRandomItems() throws NotEnoughItemsOnListException {
+    public List<E> getRandomItems() {
         if (elements.size() < numberOfItems) {
-            throw new NotEnoughItemsOnListException("Too less elements on the list", elements.size(), numberOfItems);
+            throw new NotEnoughItemsOnListException("Too less elements on the list.", elements.size(), numberOfItems);
         }
         List<E> aFewOfThem = new ArrayList<>();
         Random random = new Random();

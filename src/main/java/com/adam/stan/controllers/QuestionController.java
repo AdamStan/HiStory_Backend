@@ -37,10 +37,9 @@ public class QuestionController {
      * 
      * @param amount
      * @return
-     * @throws Exception
      */
     @GetMapping("/questions/{amount}")
-    List<QuestionJSON> getQuestionsFromAllCategories(@PathVariable Integer amount) throws Exception {
+    List<QuestionJSON> getQuestionsFromAllCategories(@PathVariable Integer amount) {
         log.info("/questions/{amount} endpoint");
         log.info("Parameter 'amount': " + amount);
         List<Question> questions = client.getQuestions();
