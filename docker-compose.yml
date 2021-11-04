@@ -3,6 +3,8 @@ services:
     container_name: quiz-server
     build: .
     image: quiz-server:latest
+    environment:
+      - QUESTIONS_SERVER_ADDRESS=http://questions.server:8000/api
     ports:
       - "9000:8080"
     networks:
