@@ -1,10 +1,10 @@
 package com.adam.stan.util;
 
+import com.adam.stan.util.exceptions.NotEnoughItemsOnListException;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import com.adam.stan.util.exceptions.NotEnoughItemsOnListException;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomItemsFromList<E> {
     private final int numberOfItems;
@@ -20,7 +20,7 @@ public class RandomItemsFromList<E> {
             throw new NotEnoughItemsOnListException("Too less elements on the list.", elements.size(), numberOfItems);
         }
         List<E> aFewOfThem = new ArrayList<>();
-        Random random = new Random();
+        ThreadLocalRandom random = ThreadLocalRandom.current();
         for (int i = 0; i < numberOfItems; i++) {
             int index = random.nextInt(elements.size());
             E element = elements.get(index);
