@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.adam.stan.logic.QuestionJSON;
+import com.adam.stan.logic.QuestionDto;
 import com.adam.stan.logic.QuizPreparation;
 import com.adam.stan.model.Question;
 
@@ -39,7 +39,7 @@ public class QuestionController {
      * @return
      */
     @GetMapping("/questions/{amount}")
-    List<QuestionJSON> getQuestionsFromAllCategories(@PathVariable Integer amount) {
+    List<QuestionDto> getQuestionsFromAllCategories(@PathVariable Integer amount) {
         log.info("/questions/{amount} endpoint");
         log.info("Parameter 'amount': " + amount);
         List<Question> questions = client.getQuestions();
@@ -55,7 +55,7 @@ public class QuestionController {
      * @return
      */
     @GetMapping("/questions/{amount}/{categories}")
-    List<QuestionJSON> getQuestionsFromSpecifiedCategories(@PathVariable Long amount, @PathVariable String[] categories) {
+    List<QuestionDto> getQuestionsFromSpecifiedCategories(@PathVariable Long amount, @PathVariable String[] categories) {
         log.info("Parameter 'amount': " + amount);
         log.info("Parameter 'categories': " + Arrays.toString(categories));
         return preparation.getQuiz(client.getQuestionsByCategories(categories), amount.intValue(), amountOfChoices);

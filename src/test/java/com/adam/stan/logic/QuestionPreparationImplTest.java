@@ -65,7 +65,7 @@ public class QuestionPreparationImplTest {
     @MethodSource("answerProviders")
     void createQuestionTest(List<Answer> answers) throws NotEnoughItemsOnListException {
         when(client.getAnswersByTypeAndCategory(any(), any())).thenReturn(answers);
-        QuestionJSON json = preparation.createQuestion(question, 4);
+        QuestionDto json = preparation.createQuestion(question, 4);
         assertThat(json.getOtherAnswers()).contains(json.getCorrectAnswer());
     }
 

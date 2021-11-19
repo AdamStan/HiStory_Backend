@@ -23,8 +23,8 @@ public class QuestionPreparationImpl implements QuestionPreparation {
     }
 
     @Override
-    public QuestionJSON createQuestion(Question question, int amountOfChoices) {
-        QuestionJSON jsonObject = new QuestionJSON(question);
+    public QuestionDto createQuestion(Question question, int amountOfChoices) {
+        QuestionDto jsonObject = new QuestionDto(question);
         AnswerType type = question.getCorrect_answer().getType();
         Category cat = question.getCorrect_answer().getCategory();
         List<Answer> answers = client.getAnswersByTypeAndCategory(type.getName(), cat.getName());

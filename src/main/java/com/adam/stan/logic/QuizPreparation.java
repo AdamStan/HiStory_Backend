@@ -5,5 +5,5 @@ import com.adam.stan.model.Question;
 import java.util.List;
 
 public interface QuizPreparation {
-    List<QuestionJSON> getQuiz(List<Question> allQuestions, int amountOfQuestions, int answersToChoice);
+    List<QuestionDto> getQuiz(List<Question> allQuestions, int amountOfQuestions, int answersToChoice);
 }

@@ -6,12 +6,12 @@ import java.util.List;
 import com.adam.stan.model.Answer;
 import com.adam.stan.model.Question;
 
-public class QuestionJSON {
+public class QuestionDto {
     private String content;
     private String correctAnswer;
     private List<String> otherAnswers = new ArrayList<>();
 
-    public QuestionJSON(Question question) {
+    public QuestionDto(Question question) {
         content = question.getText();
         correctAnswer = question.getCorrect_answer().getAnswer();
     }

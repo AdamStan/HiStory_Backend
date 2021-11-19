@@ -17,8 +17,8 @@ public class QuizPreparationImpl implements QuizPreparation{
         this.questionPreparation = questionPreparation;
     }
 
-    public List<QuestionJSON> getQuiz(List<Question> allQuestions, int amountOfQuestions, int answersToChoice) {
-        List<QuestionJSON> jsonToSend = new ArrayList<>(amountOfQuestions);
+    public List<QuestionDto> getQuiz(List<Question> allQuestions, int amountOfQuestions, int answersToChoice) {
+        List<QuestionDto> jsonToSend = new ArrayList<>(amountOfQuestions);
         RandomItemsFromList<Question> itemsGenerator = new RandomItemsFromList<>(amountOfQuestions, allQuestions);
         for (Question question : itemsGenerator.getRandomItems()) {
             jsonToSend.add(questionPreparation.createQuestion(question, answersToChoice));
