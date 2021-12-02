@@ -1,11 +1,8 @@
 package com.adam.stan.model;
 
-import java.util.Set;
-
 public class Category {
     private long id;
     private String name;
-    private Set<Answer> answers;
 
     public Category() {
     }

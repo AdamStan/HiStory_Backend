@@ -1,14 +1,12 @@
 package com.adam.stan.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.adam.stan.model.Answer;
 import com.adam.stan.model.AnswerType;
 import com.adam.stan.model.Category;
 import com.adam.stan.model.Question;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Database {
     private List<Answer> answers = new ArrayList<>();

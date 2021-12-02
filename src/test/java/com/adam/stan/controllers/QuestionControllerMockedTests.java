@@ -4,29 +4,24 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.adam.stan.clients.AnswerClient;
-import com.adam.stan.clients.QuestionClient;
-import com.adam.stan.config.Database;
-import com.adam.stan.logic.QuestionPreparation;
-import com.adam.stan.logic.QuestionPreparationImpl;
-import com.adam.stan.logic.QuizPreparation;
-import com.adam.stan.logic.QuizPreparationImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import com.adam.stan.clients.AnswerClient;
+import com.adam.stan.clients.QuestionClient;
+import com.adam.stan.config.Database;
+import com.adam.stan.logic.QuizPreparation;
 
 @SpringBootTest
 @AutoConfigureMockMvc

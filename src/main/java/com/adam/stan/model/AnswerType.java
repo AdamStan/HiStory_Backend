@@ -1,7 +1,6 @@
 package com.adam.stan.model;
 
 import java.util.Objects;
-import java.util.Set;
 
 public class AnswerType {
     private long id;
