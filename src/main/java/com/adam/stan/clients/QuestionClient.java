@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 public class QuestionClient extends BaseClient {
 
     private static final String QUESTION_URL = "/questions/";
-    private final String url = apiHost + QUESTION_URL;
     private final CategorySearchStringBuilder queryBuilder;
 
     public QuestionClient(RestTemplateBuilder restTemplateBuilder,
@@ -31,7 +30,7 @@ public class QuestionClient extends BaseClient {
      * @throws EmptyBodyException when remote host returns response without body
      */
     public List<Question> getQuestions() {
-        ResponseEntity<Question[]> response = restTemplate.getForEntity(url, Question[].class);
+        ResponseEntity<Question[]> response = restTemplate.getForEntity(baseUrl(), Question[].class);
         return Arrays.stream(getAnswersFromResponse(response)).collect(Collectors.toList());
     }
 
@@ -43,7 +42,7 @@ public class QuestionClient extends BaseClient {
      */
     public List<Question> getQuestionsByCategories(String[] categories) {
         ResponseEntity<Question[]> response = restTemplate.getForEntity(
-                url + "?" + queryBuilder.getCategorySearchString(categories),
+                baseUrl() + "?" + queryBuilder.getCategorySearchString(categories), 
                 Question[].class);
         return Arrays.stream(getAnswersFromResponse(response)).collect(Collectors.toList());
     }
@@ -54,6 +53,11 @@ public class QuestionClient extends BaseClient {
             throw new EmptyBodyException("Body is empty for QuestionClient!");
         }
         return body;
+    }
+
+    @Override
+    protected String getSecondPartOfBaseUrl() {
+        return QUESTION_URL;
     }
 
 }

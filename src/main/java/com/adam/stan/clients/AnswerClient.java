@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 @Component
 public class AnswerClient extends BaseClient {
     private static final String ANSWER_URL = "/answers/";
-    private final String url = apiHost + ANSWER_URL;
 
     public AnswerClient(RestTemplateBuilder restTemplateBuilder) {
         super(restTemplateBuilder);
@@ -25,7 +24,7 @@ public class AnswerClient extends BaseClient {
      * @throws EmptyBodyException when remote host returns response without body
      */
     public List<Answer> getAnswersByType(String type) {
-        ResponseEntity<Answer[]> response = restTemplate.getForEntity(url + "?type={type}", Answer[].class, type);
+        ResponseEntity<Answer[]> response = restTemplate.getForEntity(baseUrl() + "?type={type}", Answer[].class, type);
         return Arrays.stream(getAnswersFromResponse(response)).collect(Collectors.toList());
     }
 
@@ -35,7 +34,7 @@ public class AnswerClient extends BaseClient {
      * @throws EmptyBodyException when remote host returns response without body
      */
     public List<Answer> getAnswersByTypeAndCategory(String type, String category) {
-        ResponseEntity<Answer[]> response = restTemplate.getForEntity(url + "?type={type}&category={category}",
+        ResponseEntity<Answer[]> response = restTemplate.getForEntity(baseUrl() + "?type={type}&category={category}",
                 Answer[].class, type, category);
         return Arrays.stream(getAnswersFromResponse(response)).collect(Collectors.toList());
     }
@@ -47,4 +46,10 @@ public class AnswerClient extends BaseClient {
         }
         return body;
     }
+
+    @Override
+    protected String getSecondPartOfBaseUrl() {
+        return ANSWER_URL;
+    }
+
 }
