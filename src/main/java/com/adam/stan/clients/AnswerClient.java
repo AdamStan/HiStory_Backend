@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class AnswerClient extends BaseClient {
+public class AnswerClient extends BaseClient<Answer> {
     private static final String ANSWER_URL = "/answers/";
 
     public AnswerClient(RestTemplateBuilder restTemplateBuilder) {
@@ -25,7 +25,7 @@ public class AnswerClient extends BaseClient {
      */
     public List<Answer> getAnswersByType(String type) {
         ResponseEntity<Answer[]> response = restTemplate.getForEntity(baseUrl() + "?type={type}", Answer[].class, type);
-        return Arrays.stream(getAnswersFromResponse(response)).collect(Collectors.toList());
+        return Arrays.stream(getArrayFromResponse(response)).collect(Collectors.toList());
     }
 
     /**
@@ -36,15 +36,7 @@ public class AnswerClient extends BaseClient {
     public List<Answer> getAnswersByTypeAndCategory(String type, String category) {
         ResponseEntity<Answer[]> response = restTemplate.getForEntity(baseUrl() + "?type={type}&category={category}",
                 Answer[].class, type, category);
-        return Arrays.stream(getAnswersFromResponse(response)).collect(Collectors.toList());
-    }
-
-    private Answer[] getAnswersFromResponse(ResponseEntity<Answer[]> response) {
-        var body = response.getBody();
-        if (body == null) {
-            throw new EmptyBodyException("Body is empty for AnswerClient!");
-        }
-        return body;
+        return Arrays.stream(getArrayFromResponse(response)).collect(Collectors.toList());
     }
 
     @Override

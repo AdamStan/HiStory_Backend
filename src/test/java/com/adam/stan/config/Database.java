@@ -11,6 +11,7 @@ import com.adam.stan.model.Question;
 public class Database {
     private List<Answer> answers = new ArrayList<>();
     private List<Question> questions = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 
     public Database() {
         initDatabase();
@@ -19,6 +20,7 @@ public class Database {
     public void initDatabase() {
         Category category = new Category("cat1");
         Category cat2 = new Category("cat2");
+        categories  = List.of(category, cat2);
 
         AnswerType type1 = new AnswerType("type1");
         createQuestions(0, 100, category, type1);
@@ -46,5 +48,9 @@ public class Database {
 
     public List<Question> getQuestions() {
         return questions;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
     }
 }

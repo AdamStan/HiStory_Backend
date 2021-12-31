@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class QuestionClient extends BaseClient {
+public class QuestionClient extends BaseClient<Question> {
 
     private static final String QUESTION_URL = "/questions/";
     private final CategorySearchStringBuilder queryBuilder;
@@ -31,7 +31,7 @@ public class QuestionClient extends BaseClient {
      */
     public List<Question> getQuestions() {
         ResponseEntity<Question[]> response = restTemplate.getForEntity(baseUrl(), Question[].class);
-        return Arrays.stream(getAnswersFromResponse(response)).collect(Collectors.toList());
+        return Arrays.stream(getArrayFromResponse(response)).collect(Collectors.toList());
     }
 
     /**
@@ -44,15 +44,7 @@ public class QuestionClient extends BaseClient {
         ResponseEntity<Question[]> response = restTemplate.getForEntity(
                 baseUrl() + "?" + queryBuilder.getCategorySearchString(categories), 
                 Question[].class);
-        return Arrays.stream(getAnswersFromResponse(response)).collect(Collectors.toList());
-    }
-
-    private Question[] getAnswersFromResponse(ResponseEntity<Question[]> response) {
-        var body = response.getBody();
-        if (body == null) {
-            throw new EmptyBodyException("Body is empty for QuestionClient!");
-        }
-        return body;
+        return Arrays.stream(getArrayFromResponse(response)).collect(Collectors.toList());
     }
 
     @Override
