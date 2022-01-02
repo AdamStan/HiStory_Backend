@@ -1,6 +1,7 @@
 package com.adam.stan.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adam.stan.clients.CategoryClient;
+import com.adam.stan.model.Category;
+import com.adam.stan.model.DirectCategory;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -23,6 +26,8 @@ public class CategoryController {
     @GetMapping("/categories")
     public List<String> getAllCategories() {
         log.info("Getting all categories");
-        return client.getAllCategories().stream().map(cat -> cat.getName()).toList();
+        List<DirectCategory> categories = client.getAllCategories();
+        log.info("Categories: " + categories);
+        return categories.stream().map(cat -> cat.getCategory()).collect(Collectors.toList());
     }
 }

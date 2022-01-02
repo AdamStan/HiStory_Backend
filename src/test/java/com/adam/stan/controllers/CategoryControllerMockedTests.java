@@ -1,6 +1,6 @@
 package com.adam.stan.controllers;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -44,6 +44,6 @@ class CategoryControllerMockedTests {
                 .andExpect(status().isOk())
                 .andReturn();
         String body = result.getResponse().getContentAsString();
-        assertThat(body.equals("[\"cat1\",\"cat2\"]"));
+        assertTrue(body.equals("[\"cat1\",\"cat2\"]"));
     }
 }

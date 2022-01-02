@@ -6,12 +6,14 @@ import java.util.List;
 import com.adam.stan.model.Answer;
 import com.adam.stan.model.AnswerType;
 import com.adam.stan.model.Category;
+import com.adam.stan.model.DirectCategory;
 import com.adam.stan.model.Question;
 
 public class Database {
     private List<Answer> answers = new ArrayList<>();
     private List<Question> questions = new ArrayList<>();
     private List<Category> categories = new ArrayList<>();
+    private List<DirectCategory> directCategories;
 
     public Database() {
         initDatabase();
@@ -21,6 +23,7 @@ public class Database {
         Category category = new Category("cat1");
         Category cat2 = new Category("cat2");
         categories  = List.of(category, cat2);
+        directCategories = List.of(new DirectCategory("cat1"), new DirectCategory("cat2"));
 
         AnswerType type1 = new AnswerType("type1");
         createQuestions(0, 100, category, type1);
@@ -50,7 +53,7 @@ public class Database {
         return questions;
     }
 
-    public List<Category> getCategories() {
-        return categories;
+    public List<DirectCategory> getCategories() {
+        return directCategories;
     }
 }

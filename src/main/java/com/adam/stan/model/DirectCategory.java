@@ -1,20 +1,19 @@
 package com.adam.stan.model;
 
-public class Category {
+public class DirectCategory {
     private long id;
-    private String name;
     private String category;
 
-    public Category() {
+    public DirectCategory() {
     }
 
-    public Category(String name) {
-        this.name = name;
+    public DirectCategory(String name) {
+        this.category = name;
     }
 
     @Override
     public String toString() {
-        return "Category [ID=" + id + ", name=" + name + ", category=" + category + "]";
+        return "Category [ID=" + id + ", category=" + category + "]";
     }
 
     public long getId() {
@@ -25,14 +24,6 @@ public class Category {
         id = iD;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getCategory() {
         return category;
     }
@@ -40,5 +31,4 @@ public class Category {
     public void setCategory(String category) {
         this.category = category;
     }
-
 }
