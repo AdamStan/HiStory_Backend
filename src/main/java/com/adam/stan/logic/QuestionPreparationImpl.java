@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.adam.stan.clients.AnswerClient;
+import com.adam.stan.dto.QuestionDto;
 import com.adam.stan.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class QuestionPreparationImpl implements QuestionPreparation {
         QuestionDto jsonObject = new QuestionDto(question);
         AnswerType type = question.getCorrect_answer().getType();
         Category cat = question.getCorrect_answer().getCategory();
-        List<Answer> answers = client.getAnswersByTypeAndCategory(type.getName(), cat.getName());
+        List<Answer> answers = client.getAnswersByTypeAndCategory(type.getName(), cat.getPeriod());
 
         RandomItemsFromList<Answer> itemsGenerator = new RandomItemsFromList<>(amountOfChoices, answers);
         List<Answer> chosenAnswers = itemsGenerator.getRandomItems();

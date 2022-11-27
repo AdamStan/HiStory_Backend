@@ -2,43 +2,44 @@ package com.adam.stan.model;
 
 public class Category {
     private long id;
-    private String name;
-    private String category;
+    private String period;
+    private String details;
 
     public Category() {
     }
 
-    public Category(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Category [ID=" + id + ", name=" + name + ", category=" + category + "]";
+    public Category(String period, String details) {
+        this.period = period;
+        this.details = details;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long iD) {
-        id = iD;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPeriod() {
+        return period;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPeriod(String period) {
+        this.period = period;
     }
 
-    public String getCategory() {
-        return category;
+    public String getDetails() {
+        return details;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
+    @Override
+    public String toString() {
+        return "Category [period=" + period + ", details=" + details + "]";
     }
 
 }

@@ -1,5 +1,6 @@
 package com.adam.stan.logic;
 
+import com.adam.stan.dto.QuestionDto;
 import com.adam.stan.model.Question;
 import com.adam.stan.util.RandomItemsFromList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,12 @@ public class QuizPreparationImpl implements QuizPreparation{
     }
 
     public List<QuestionDto> getQuiz(List<Question> allQuestions, int amountOfQuestions, int answersToChoice) {
-        List<QuestionDto> jsonToSend = new ArrayList<>(amountOfQuestions);
+        List<QuestionDto> questions = new ArrayList<>(amountOfQuestions);
         RandomItemsFromList<Question> itemsGenerator = new RandomItemsFromList<>(amountOfQuestions, allQuestions);
         for (Question question : itemsGenerator.getRandomItems()) {
-            jsonToSend.add(questionPreparation.createQuestion(question, answersToChoice));
+            questions.add(questionPreparation.createQuestion(question, answersToChoice));
         }
-        return jsonToSend;
+        return questions;
     }
 
 }

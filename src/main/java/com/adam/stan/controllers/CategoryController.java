@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.adam.stan.clients.CategoryClient;
 import com.adam.stan.model.Category;
-import com.adam.stan.model.DirectCategory;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -26,8 +25,11 @@ public class CategoryController {
     @GetMapping("/categories")
     public List<String> getAllCategories() {
         log.info("Getting all categories");
-        List<DirectCategory> categories = client.getAllCategories();
+        List<Category> categories = client.getAllCategories();
         log.info("Categories: " + categories);
-        return categories.stream().map(cat -> cat.getCategory()).collect(Collectors.toList());
+        return categories.stream()
+                .map(cat -> cat.getPeriod())
+                .distinct()
+                .collect(Collectors.toList());
     }
 }

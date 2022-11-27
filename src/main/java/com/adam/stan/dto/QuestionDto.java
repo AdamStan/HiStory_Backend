@@ -1,4 +1,4 @@
-package com.adam.stan.logic;
+package com.adam.stan.dto;
 
 import java.util.ArrayList;
 import java.util.List;

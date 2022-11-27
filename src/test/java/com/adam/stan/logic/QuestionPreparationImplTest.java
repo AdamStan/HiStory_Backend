@@ -1,6 +1,7 @@
 package com.adam.stan.logic;
 
 import com.adam.stan.clients.AnswerClient;
+import com.adam.stan.dto.QuestionDto;
 import com.adam.stan.model.Answer;
 import com.adam.stan.model.AnswerType;
 import com.adam.stan.model.Category;
@@ -34,7 +35,7 @@ public class QuestionPreparationImplTest {
     static void setUpData() {
         Answer correctAnswer = new Answer();
         correctAnswer.setAnswer("answer_correct");
-        correctAnswer.setCategory(new Category("cat1"));
+        correctAnswer.setCategory(new Category("cat1","det1"));
         correctAnswer.setType(new AnswerType("type1"));
 
         question = new Question();

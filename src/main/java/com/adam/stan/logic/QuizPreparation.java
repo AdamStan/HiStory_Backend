@@ -1,5 +1,6 @@
 package com.adam.stan.logic;
 
+import com.adam.stan.dto.QuestionDto;
 import com.adam.stan.model.Question;
 
 import java.util.List;

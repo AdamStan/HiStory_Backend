@@ -34,7 +34,7 @@ public class AnswerClient extends BaseClient<Answer> {
      * @throws EmptyBodyException when remote host returns response without body
      */
     public List<Answer> getAnswersByTypeAndCategory(String type, String category) {
-        ResponseEntity<Answer[]> response = restTemplate.getForEntity(baseUrl() + "?type={type}&category={category}",
+        ResponseEntity<Answer[]> response = restTemplate.getForEntity(baseUrl() + "?type={type}&period={category}",
                 Answer[].class, type, category);
         return Arrays.stream(getArrayFromResponse(response)).collect(Collectors.toList());
     }

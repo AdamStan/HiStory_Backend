@@ -4,12 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.adam.stan.clients.QuestionClient;
+import com.adam.stan.dto.QuestionDto;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.adam.stan.logic.QuestionDto;
 import com.adam.stan.logic.QuizPreparation;
 import com.adam.stan.model.Question;
 
